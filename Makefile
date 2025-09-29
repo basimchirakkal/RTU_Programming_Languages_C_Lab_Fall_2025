@@ -6,7 +6,32 @@ LDFLAGS =
 BUILD_DIR = bin
 SRC_DIR = src
 
-PROGRAMS = $(BUILD_DIR)/hello $(BUILD_DIR)/calculator $(BUILD_DIR)/formats
+PROGRAMS = $(BUILD_DIR)/hello $(BUILD_DIR)/calculator $(BUILD_DIR)/formats \
+		   $(BUILD_DIR)/lab3_task1 $(BUILD_DIR)/lab3_task2 $(BUILD_DIR)/lab3_task3
+$(BUILD_DIR)/lab3_task1: $(SRC_DIR)/lab3_task1.c
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
+
+$(BUILD_DIR)/lab3_task2: $(SRC_DIR)/lab3_task2.c
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
+
+$(BUILD_DIR)/lab3_task3: $(SRC_DIR)/lab3_task3.c
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
+
+lab3_task1: $(BUILD_DIR)/lab3_task1
+lab3_task2: $(BUILD_DIR)/lab3_task2
+lab3_task3: $(BUILD_DIR)/lab3_task3
+
+run-lab3_task1: lab3_task1
+	./$(BUILD_DIR)/lab3_task1
+
+run-lab3_task2: lab3_task2
+	./$(BUILD_DIR)/lab3_task2
+
+run-lab3_task3: lab3_task3
+	./$(BUILD_DIR)/lab3_task3
 
 all: $(PROGRAMS)
 
